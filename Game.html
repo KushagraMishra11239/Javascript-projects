@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mainbox {
+            height: 70%;
+            width: 30%;
+            border: 2px solid rgb(109, 109, 109);
+            background-color: rgba(179, 171, 171, 0.484);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /* margin-top: calc(50% - 25px); */
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+            color: rgb(126, 126, 126);
+        }
+
+        #inputbox {
+            border: 2px solid gray;
+            width: 320px;
+            height: 35px;
+            border-radius: 15px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #checkbtn {
+            display: block;
+            margin: auto;
+            margin-top: 50px;
+            height: 30px;
+            width: 120px;
+            padding-inline: 10px;
+            font-size: larger;
+            color: rgb(255, 255, 255);
+            background-color: black;
+            border-radius: 5px;
+        }
+
+        #turns {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: large;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        #instructions {
+            font-size: larger;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+            color: aliceblue;
+        }
+        #reset {
+            display: block;
+            margin: auto;
+            margin-top: 50px;
+            height: 30px;
+            width: 120px;
+            padding-inline: 10px;
+            font-size: larger;
+            color: rgb(255, 255, 255);
+            background-color: black;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainbox">
+
+        <h1>Enter your guess here</h1>
+        <input type="text" name="" id="inputbox">
+        <div>
+
+            <button id="checkbtn">Check</button>
+        </div>
+
+        <p id="turns">Turns left:5</p>
+        <p id="instructions"></p>
+
+        <button id="reset">Play again</button>
+
+
+
+
+        <script>
+            const x = Math.round(Math.random() * 100);
+            let t = 5;
+            console.log(x)
+            for (let turns = 5; turns > 0; turns--) {
+                document.getElementById('checkbtn').onclick = function () {
+                    let num = document.getElementById('inputbox').value
+                    t--;
+                    document.getElementById('turns').textContent = `Turns left:${t}`
+                    if (t == 0) {
+                        document.getElementById('checkbtn').disabled = true
+                    }
+
+                    if (num == x) {
+                        document.getElementById('instructions').textContent = `Congrats you win with ${t} turns left`
+                    }
+                    if (num > x) {
+                        document.getElementById('instructions').textContent = "Enter smaller number"
+                    }
+                    if (num < x) {
+                        document.getElementById('instructions').textContent = "Enter larger number"
+                    }
+
+                }
+                
+            }
+            document.getElementById('reset').onclick = function(){
+                t = 5;
+                document.getElementById('instructions').textContent = "";
+                document.getElementById('turns').textContent = "Turns left:5"
+            }
+        </script>
+    </div>
+</body>
+
+</html>
